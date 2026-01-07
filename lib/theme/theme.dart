@@ -14,6 +14,7 @@ final theme = ThemeData(
     displayLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Color.fromARGB(248, 237, 237, 237)),
     displayMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Color.fromARGB(248, 248, 248, 255)),
     headlineMedium: TextStyle(fontSize: 21, fontWeight: FontWeight.w700, color: scaffoldColor),
+    labelMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.w500, color: Color.fromARGB(248, 248, 248, 255)),
     // TextStyle? displayLarge,
     // TextStyle? displayMedium,
     // TextStyle? displaySmall,

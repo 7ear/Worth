@@ -17,8 +17,6 @@ class _HomePageState extends State<HomePage> {
     if (mounted) setState(() {});
   }
 
-  // Удаляем локальное состояние items - оно больше не нужно
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
