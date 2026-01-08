@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                                       )
                                     ),
                                     Text(
-                                      '${item.value.round()}\$',
+                                      '${(item.value * 10).round() / 10}\$',
                                       style: GoogleFonts.arimo(
                                         textStyle: theme.textTheme.displayMedium
                                       )

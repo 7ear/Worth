@@ -31,10 +31,24 @@ class _EditAssetState extends State<EditAsset> {
   late final TextEditingController controllerNameField = TextEditingController(text: widget.item.category.toString());
   late final TextEditingController controllerValueField = TextEditingController(text: widget.item.value.toString());
 
+  bool isTextFieldFocused = false;
+  final FocusNode textFieldFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    textFieldFocusNode.addListener(() {
+      setState(() {
+        isTextFieldFocused = textFieldFocusNode.hasFocus;
+      });
+    });
+  }
+
   @override
   void dispose() {
     controllerNameField.dispose();
     controllerValueField.dispose();
+    textFieldFocusNode.dispose();
     super.dispose();
   }
 
@@ -64,26 +78,65 @@ class _EditAssetState extends State<EditAsset> {
             child: Text('Value', style: GoogleFonts.arimo(textStyle: theme.textTheme.labelMedium)),
           ),
           Container(
-            margin: EdgeInsets.only(top: 15, left: 20),
-            constraints: BoxConstraints(maxWidth: 350, maxHeight: 40),
-            child: TextField(
-              controller: controllerValueField,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color.fromRGBO(20, 20, 20, 1),
-                suffixText: '\$',
-                suffixStyle: TextStyle(color: Colors.green, fontSize: 14),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color.fromRGBO(45, 45, 45, 1),
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
+            margin: EdgeInsets.only(top: 15, left: 20, right: 20),
+            constraints: BoxConstraints(maxHeight: 40),
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 200),
+              curve: Curves.easeInOut,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: isTextFieldFocused
+                    ? [
+                        BoxShadow(
+                          color: Color.fromRGBO(55, 55, 55, 0.6),
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                          offset: Offset(0, 0),
+                        ),
+                      ]
+                    : [],
               ),
-              style: GoogleFonts.inter(textStyle: theme.textTheme.displayMedium),
-              keyboardType: TextInputType.number, 
-              cursorColor: Colors.white,
+              child: TextField(
+                focusNode: textFieldFocusNode,
+                controller: controllerValueField,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color.fromRGBO(20, 20, 20, 1),
+                  isDense: true,
+                  suffixText: '\$',
+                  suffixStyle: GoogleFonts.arimo(textStyle: theme.textTheme.displaySmall),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(45, 45, 45, 1),
+                      width: 1.0,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(55, 55, 55, 1),
+                      width: 2.0,
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(45, 45, 45, 1),
+                      width: 1.0,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 13.0,
+                    horizontal: 12.0,
+                  ),
+                ),
+                style: GoogleFonts.arimo(textStyle: theme.textTheme.headlineSmall),
+                keyboardType: TextInputType.number,
+                cursorWidth: 2,
+                cursorRadius: Radius.circular(10),
+                cursorColor: textFieldColor,
+              ),
             ),
           ),
           Container(
