@@ -36,27 +36,20 @@ class _AddAssetState extends State<AddAsset> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(margin: EdgeInsets.only(top: 50, left: 20), child: Text('Name')),
           Container(
-            margin: EdgeInsets.only(top: 15, left: 20),
-            constraints: BoxConstraints(maxWidth: 350),
-            child: TextField(
-              controller: controllerNameField,
-              decoration: InputDecoration(hintText: 'Type something...', border: OutlineInputBorder()),
-            ),
+            margin: EdgeInsets.only(top: 50, left: 20),
+            child: Text('Name', style: GoogleFonts.arimo(textStyle: theme.textTheme.labelMedium)),
           ),
-          Container(margin: EdgeInsets.only(top: 50, left: 20), child: Text('Value')),
+          CustomTextField(controller: controllerNameField, isItValueField: false, isItTextInputTypeNumber: false, hint: "Type something..."),
           Container(
-            margin: EdgeInsets.only(top: 15, left: 20),
-            constraints: const BoxConstraints(maxWidth: 350),
-            child: TextField(
-              controller: controllerValueField,
-              decoration: InputDecoration(hintText: 'Type something...', border: OutlineInputBorder()),
-            ),
+            margin: EdgeInsets.only(top: 35, left: 20),
+            child: Text('Value', style: GoogleFonts.arimo(textStyle: theme.textTheme.labelMedium)),
           ),
+          CustomTextField(controller: controllerValueField, isItValueField: true, isItTextInputTypeNumber: true, hint: "Type something..."),
+          Spacer(),
           Container(
-            margin: EdgeInsets.only(top: 15, left: 20),
-            child: ElevatedButton(onPressed: addItem, child: Text('Add')),
+            margin: EdgeInsets.only(left: 20, right: 20, bottom: 15 + MediaQuery.of(context).padding.bottom),
+            child: AddButton(),
           ),
         ],
       ),

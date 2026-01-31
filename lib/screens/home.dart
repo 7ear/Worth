@@ -131,7 +131,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                  AddButton(),
+                  Positioned(
+                    bottom: 15 + MediaQuery.of(context).padding.bottom,
+                    left: 20,
+                    right: 20,
+                    child: AddButton(),
+                  ),
                 ],
               );
             },
