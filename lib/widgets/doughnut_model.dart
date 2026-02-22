@@ -1,37 +1,56 @@
 import '../imports.dart';
-
 class DoughnutChart extends StatelessWidget {
   const DoughnutChart({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return SfCircularChart(
+      backgroundColor: Colors.transparent,
+      margin: EdgeInsets.zero,
       series: <CircularSeries>[
         DoughnutSeries<ChartData, String>(
           dataSource: DataManager.allData,
           xValueMapper: (ChartData data, _) => data.category,
           yValueMapper: (ChartData data, _) => data.value,
-          radius: '95%',
-          innerRadius: '60%',
-          dataLabelSettings: DataLabelSettings(
-            isVisible: true,
-            labelPosition: ChartDataLabelPosition.inside,
-            // textStyle: TextStyle(
-            //   fontSize: 14,
-            //   fontWeight: FontWeight.w400,      // Вес шрифта 400
-            //   textBaseline: TextBaseline.alphabetic, // Базовая линия
-            //   decoration: TextDecoration.none,  // Без оформления
-            // ),
-            // builder: (dynamic data, _, __, ___, ____) {
-            //   final total = DataManager.loadData().fold(0.0, (sum, item) => sum + item.value);
-            //   final percent = (data.value / total * 100).toStringAsFixed(1);
-            //   return Text('${percent}%');
-            // },
+          radius: '85%',
+          innerRadius: '70%',
+          dataLabelSettings: const DataLabelSettings(
+            isVisible: false,
           ),
-          selectionBehavior: SelectionBehavior(enable: true, selectedColor: Colors.amber),
+          selectionBehavior: SelectionBehavior(
+            enable: true,
+            selectedColor: mainOrangeColor,
+            // unselectedColor: Colors.white.withOpacity(0.1),
+          ),
         ),
       ],
       palette: ColorsForList.palette,
-      margin: EdgeInsets.only(top: 7)
+      annotations: [
+        CircularChartAnnotation(
+          widget: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Total',
+                style: GoogleFonts.inter(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: const Color.fromARGB(193, 255, 255, 255),
+                ),
+              ),
+              SizedBox(height: 4),
+              Text(
+                '\$${DataManager.allData.fold(0.0, (sum, item) => sum + item.value).toStringAsFixed(0)}',
+                style: GoogleFonts.inter(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -50,4 +69,3 @@ class ChartData {
 
   factory ChartData.fromJson(Map<String, dynamic> json) => ChartData(json['category'] as String, json['value'] as double);
 }
-

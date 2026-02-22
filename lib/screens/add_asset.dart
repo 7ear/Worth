@@ -32,7 +32,10 @@ class _AddAssetState extends State<AddAsset> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('New Asset')),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Add Asset', style: GoogleFonts.schibstedGrotesk(textStyle: theme.textTheme.titleLarge))
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -49,7 +52,7 @@ class _AddAssetState extends State<AddAsset> {
           Spacer(),
           Container(
             margin: EdgeInsets.only(left: 20, right: 20, bottom: 15 + MediaQuery.of(context).padding.bottom),
-            child: AddButton(),
+            child: AddButton(isItNavigator: false, addItemFunction: addItem),
           ),
         ],
       ),

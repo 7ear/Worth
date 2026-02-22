@@ -48,8 +48,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
     final theme = Theme.of(context);
     
     return Container(
-      margin: const EdgeInsets.only(top: 15, left: 20, right: 20),
-      constraints: const BoxConstraints(maxHeight: 40),
+      margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+      constraints: const BoxConstraints(maxHeight: 50),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
@@ -81,9 +81,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
             filled: true,
             fillColor: const Color.fromRGBO(20, 20, 20, 1),
             isDense: true,
-            suffixText: widget.isItValueField ? '\$' : null,
             suffixIcon: widget.isItValueField
-                ? null
+                ? Icon(
+                    Icons.attach_money,
+                    color: iconsTextFieldColor,
+                    size: 21,
+                  )
                 : Icon(
                     Icons.local_offer_outlined,
                     color: iconsTextFieldColor,
@@ -91,7 +94,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   ),
             suffixStyle: GoogleFonts.arimo(textStyle: theme.textTheme.displaySmall),
             hintText: widget.hint,
-            hintStyle: GoogleFonts.inter(textStyle: theme.textTheme.labelSmall),
+            hintStyle: GoogleFonts.inter(
+              color: Color.fromARGB(92, 255, 255, 255),
+              fontWeight: FontWeight.w300,
+              fontSize: 19
+            ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(
@@ -107,8 +114,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ),
             ),
             contentPadding: const EdgeInsets.symmetric(
-              vertical: 13.0,
-              horizontal: 12.0,
+              vertical: 13,
+              horizontal: 12,
             ),
           ),
         ),

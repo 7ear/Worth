@@ -9,6 +9,7 @@ export 'widgets/add_button.dart';
 export 'modules/colors_for_list.dart';
 export 'widgets/custom_text_field.dart';
 
+export 'package:flutter/services.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:provider/provider.dart';
 export 'package:flutter/material.dart';

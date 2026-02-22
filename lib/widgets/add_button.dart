@@ -1,7 +1,10 @@
 import '../imports.dart';
 
 class AddButton extends StatelessWidget {
-  const AddButton({super.key});
+  const AddButton({super.key, required this.isItNavigator, this.addItemFunction});
+
+  final bool isItNavigator;
+  final VoidCallback? addItemFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +15,14 @@ class AddButton extends StatelessWidget {
         backgroundColor: Color.fromARGB(248, 237, 237, 237),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
       ),
-      onPressed: () async {
-        await Navigator.push(context, MaterialPageRoute(builder: (context) => const AddAsset()));
-      },
       child: Text('Add', style: GoogleFonts.roboto(textStyle: theme.textTheme.headlineMedium)),
+      onPressed: () async {
+        if (isItNavigator) {
+          await Navigator.push(context, MaterialPageRoute(builder: (context) => const AddAsset()));
+        } else {
+          addItemFunction?.call();
+        }
+      },
     );
   }
 }

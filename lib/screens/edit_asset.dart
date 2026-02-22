@@ -41,7 +41,10 @@ class _EditAssetState extends State<EditAsset> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Edit Asset')),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Edit Asset', style: GoogleFonts.schibstedGrotesk(textStyle: theme.textTheme.titleLarge)),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -68,7 +71,7 @@ class _EditAssetState extends State<EditAsset> {
                       backgroundColor: Color.fromRGBO(162, 33, 33, 1),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
                     ),
-                    onPressed: () => editItem(),
+                    onPressed: () => deleteItem(),
                     child: Text('Delete', style: GoogleFonts.roboto(textStyle: theme.textTheme.headlineLarge)),
                   ),
                 ),
