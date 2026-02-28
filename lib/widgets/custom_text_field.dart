@@ -85,7 +85,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ? Icon(
                     Icons.attach_money,
                     color: iconsTextFieldColor,
-                    size: 21,
+                    size: 23,
                   )
                 : Icon(
                     Icons.local_offer_outlined,

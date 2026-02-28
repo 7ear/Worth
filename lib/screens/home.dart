@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: _scrollOffset > 10 ? 0 : 0,
+        elevation: 0,
         backgroundColor: scaffoldColor,
         title: Center(
           child: Text.rich(
@@ -69,6 +69,7 @@ class _HomePageState extends State<HomePage> {
                 (sum, item) => sum + item.value
               );
               final colorPalette = ColorsForList.palette;
+              
               return Stack(
                 children: [
                   ScrollConfiguration(
@@ -77,26 +78,23 @@ class _HomePageState extends State<HomePage> {
                       controller: _scrollController,
                       physics: const ClampingScrollPhysics(),
                       slivers: [
-                        SliverAppBar(
-                          expandedHeight: 300,
-                          collapsedHeight: 0,
-                          toolbarHeight: 0,
-                          floating: true,
-                          snap: true,
-                          pinned: false,
-                          stretch: true,
-                          backgroundColor: scaffoldColor,
-                          flexibleSpace: FlexibleSpaceBar(
-                            background: DoughnutChart(),
-                            collapseMode: CollapseMode.pin,
+                        SliverToBoxAdapter(
+                          child: Container(
+                            height: 300,
+                            margin: EdgeInsets.only(
+                              top: 0,
+                              bottom: 0,
+                            ),
+                            child: const DoughnutChart(),
                           ),
                         ),
+                        
                         SliverPadding(
                           padding: EdgeInsets.only(
                             left: 20, 
                             right: 20, 
                             bottom: 100, 
-                            top: _scrollOffset > 280 ? 22 : 22,
+                            top: 0,
                           ),
                           sliver: SliverList(
                             delegate: SliverChildBuilderDelegate((context, index) {
@@ -210,36 +208,46 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
+                  
                   AnimatedPositioned(
                     duration: const Duration(milliseconds: 200),
-                    top: _scrollOffset > 10 ? 12 : -50,
+                    top: _scrollOffset > 50 ? 12 : -50,
                     left: 0,
                     right: 0,
                     child: Center(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.white.withOpacity(0.1)),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.keyboard_arrow_up_rounded,
-                              color: mainOrangeColor,
-                              size: 20,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              'Pull down to show chart',
-                              style: GoogleFonts.inter(
-                                fontSize: 14,
-                                color: Colors.white.withOpacity(0.9),
+                      child: GestureDetector(
+                        onTap: () {
+                          _scrollController.animateTo(
+                            0,
+                            duration: const Duration(milliseconds: 400),
+                            curve: Curves.easeOutCubic,
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(0, 0, 0, 0.8),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: const Color.fromRGBO(255, 255, 255, 0.1)),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.keyboard_arrow_up_rounded,
+                                color: mainOrangeColor,
+                                size: 20,
                               ),
-                            ),
-                          ],
+                              const SizedBox(width: 4),
+                              Text(
+                                'Pull down to show chart',
+                                style: GoogleFonts.inter(
+                                  fontSize: 14,
+                                  color: const Color.fromRGBO(255, 255, 255, 0.9),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
