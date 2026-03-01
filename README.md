@@ -1,16 +1,27 @@
-# worth
+# Worth
 
-A new Flutter project.
+**Wort** - это простое приложение, с помощью которого легко отслеживать свои активы\
+и удобно анализировать все свое состояние с помощью графика.
 
-## Getting Started
+### Скриншот главного экрана:
 
-This project is a starting point for a Flutter application.
+<img width="216" height="480" alt="screen" src="https://github.com/user-attachments/assets/78cffff2-7e5e-4409-b431-c7158ca07b6f" />
 
-A few resources to get you started if this is your first Flutter project:
+### Установка с помощью github и flutter:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
+git clone https://github.com/7ear/worth.git
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+cd worth
+
+flutter pub get
+
+flutter run
+```
+
+### Доступно на:
+
+**RuStore:** xxxxxxxxxxxxxxxxxxxxxxx\
+**AppStore:** -
+
+_tg: @cezrt_
